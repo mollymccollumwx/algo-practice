@@ -157,4 +157,63 @@ function fizzBuzz(n) {
 
 // modulo operator: determine a reminder 9%3 = 0
 
+// ======================================================================= //
 
+// PROBLEM: Array Chunking. Given an array and chunk size, divide the array into many subarrays where each subarray is of length size
+
+// Ex: chunk([1,2,3,4], 2) ----> [[1,2], [3,4]]
+// Ex: chunk([1,2,3,4,5], 4) ----> [[1,2,3,4], [5]]
+
+// SOLUTION:
+
+function chunk(array, size) {
+const chunked = [];
+
+for (let element of array) {
+    const last = chunked[chunked.length -1];
+
+    if (!last || last.length === size) {
+        chunked.push([element]);
+
+    } else {
+        last.push(element);
+    }
+
+    return chunked; 
+}
+
+}
+
+// EXPLANATION: 
+
+// Create an array to hold chunks called "chunked"
+// For each element in the "unchunked" array
+// retrieve the last element in the 'chunked'
+// if the last element does not exist, or if it's length is equal to chunk size -- push a new chunk into 'chunked' with the current element
+// Else add the current element into the chunk
+
+// SOLUTION # 2
+
+function chunk(array, size){
+
+    const chunked = [];
+    let index = 0; 
+
+    while (index < array.length) {
+        chunked.push(array.slice(index, index + size))
+        index += size;
+    }
+
+    return chunked;
+
+
+}
+
+// EXPLANATION: 
+
+// .slice(0, 3) -- starting at element 0, give me a copy of everything from 0 up to 3 but not including 3
+// create an empty chunked array
+// create index and start at 0
+// while index is less than the array.length
+    // push a slice of length 'size' from array into 'chunked'
+    // add 'size' to index
