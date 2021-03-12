@@ -276,5 +276,57 @@ function cleanString(str) {
 // array method: sort() --- figures out how to meaningful sort what is inside an array
 // will sort into alphabetical order
 
+// =================================================================
+
+// PROBLEM: Sentence Capitalize 
+// Ex: capitalize('a short sentence') ---> 'A Short Sentence'
+// Function that should capitalize the first letter of each word in the string
+
+
+// SOLUTION 1: 
+
+function capitalize(str) {
+const words = [];
+
+for (let word of str.split(' ')) {
+    words.push(word[0].toUpperCase() + word.slice(1))
+}
+return words.join(' ');
+}
+
+// string methods: 
+// slice() takes a portion of the string & toUpperCase()
+
+// make an empty array 'words
+// split the input string by spaces to get an array
+// for each word in the array
+    // uppercase the first letter of the word
+    // join the first letter with rest of the string
+    // push the result into "words" array
+// join 'words' into a string and return it
+
+// SOLUTION 2
+
+function capitalize(str) {
+
+let result = str[0].toUpperCase();
+
+for (let i = 1; i < str.length; i++){
+    if (str[i-1] === ' '){
+       result += str[i].toUpperCase();
+    } else {
+        result += str[i];
+    }
+}
+
+return result; 
+
+}
+
+// create result which the first character of the input string is capitalized 
+// for each character in the string
+    // if the character to the left is a space
+    // capitalize it and add it to the result
+    // else add it to the result 
 
 
