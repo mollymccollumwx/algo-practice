@@ -217,3 +217,64 @@ function chunk(array, size){
 // while index is less than the array.length
     // push a slice of length 'size' from array into 'chunked'
     // add 'size' to index
+
+
+// ======================================================================= 
+
+// PROBLEM: ANAGRAMS Ex: anagrams('rail safety', 'fairy tales') = TRUE
+
+
+// SOLUTION 1:
+function anagrams(stringA, stringB){
+    const aCharMap = buildCharMap(stringA);
+    const bCharMap = buildCharMap(stringB);
+
+    if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length){
+        return false;
+    } 
+
+    for (let char in aCharMap) {
+        if (aCharMap[char] !== bCharMap[char]) {
+            return false;
+        } 
+    }
+    return true; 
+}
+
+function buildCharMap(str){
+    const charMap = {};
+
+    for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+        charMap[char] = charMap[char] + 1 || 1;
+    }
+
+    return charMap;
+}
+
+// RegExp -- used to manipulate strings. Can removed spaces and exclamation points
+// word.replace(/[^w]/g, "")
+// toLowerCase(); 
+// make helper function
+// Object.keys(obj) == gives you an array of keys
+// Object.key(obj).length == gives you the length of the array of the keys
+// Involves three iterations
+
+// SOLUTION 2 
+
+function anagrams(stringA, stringB) {
+    return cleanString(stringA) === cleanString(stringB);
+
+
+
+}
+
+function cleanString(str) {
+    return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+}
+
+
+// array method: sort() --- figures out how to meaningful sort what is inside an array
+// will sort into alphabetical order
+
+
+
