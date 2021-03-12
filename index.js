@@ -57,7 +57,38 @@ function reverse(str) {
 
 // PROBLEM: Palindrome. Find out if a string is a palindrome or not. 
 
+// SOLUTION # 1:
 function palindrome(str) {
+    if (str === str.split('').reverse().join('')){
+        return true;
+    } else {
+        return false;
+    }
 
-    
 }
+// manually reversed the string and compare it to the original string
+
+// SOLUTION #2:
+
+function palindrome(str) {
+return str.split('').every((char, i)=> {
+    return char === str[str.length -i - 1]
+ });
+
+}
+
+// .every() allows you to check every element in an array and make it pass a test
+// not an ideal solution because you are doing my checks that 
+
+// ================================================================== //
+
+
+// PROBLEM: Reversing an Integer. Ex: reverseInt(15) === 51
+
+function reverseInt(n) {
+
+
+
+}
+
+// toString() turns an integer to a string, parseInt() turns string to integer
