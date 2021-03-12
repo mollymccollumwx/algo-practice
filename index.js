@@ -80,6 +80,8 @@ function palindrome(str) {
 
 // PROBLEM: Reversing an Integer. Ex: reverseInt(15) === 51
 
+// SOLUTION:
+
 function reverseInt(n) {
    
   
@@ -95,5 +97,64 @@ function reverseInt(n) {
 // ====================================================================//
 
 // PROBLEM: MAX CHAR. Ex: maxChar("abccccccccd") === "c". Return the character used most inside the string
+
+// SOLUTION 1: 
+
+function maxChar(str) {
+    const charMap = {};
+    let max = 0;
+    let maxChar = ''; 
+
+    for (let char of str) {
+        if (charMap[char]){
+            charMap[char]++;
+        } else {
+            charMap[char] = 1;
+        }
+    }
+     console.log(charMap);
+
+     for (let char in  charMap){
+         if (charMap[char] > max){
+             max = charMap[char];
+             maxChar = char;
+         }
+     }
+ return maxChar;
+}
+
+// EXPLANATION: Convert string into an object
+
+// other variations: 
+// 1. What is the most common character in a string?
+// 2. Does string A hae the same cahracters as String B (anagram)?
+// 3. Does the given string have any repeated characters?
+
+// ========================================================================= //
+
+// PROBLEM: Fizz Buzz. Ex: fizzBuzz(5); 1 2 fizz 4 buzz. Print out fizz for multiples of 3, buzz for multiples of 5, fizzbuzz for multiples of both
+
+
+// SOLUTION:
+
+function fizzBuzz(n) {
+ for (let i = 1; i <= n; i++) {
+     // Is the number a multiple of 3 and 5? Can also be a multiple of 15 
+     if (i%3 === 0 && i%5 === 0 ){
+         console.log("fizzbuzz");
+    
+     } else if (i%3 === 0) {
+        // Is the number a multiple of 3?
+        console.log("fizz");
+     } else if (i%5 === 0){
+        //  Is the number a multiple of 5?
+         console.log("buzz")
+     } else {
+         console.log(i);
+     }
+ }
+}
+
+// modulo operator: determine a reminder 9%3 = 0
 
 
