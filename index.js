@@ -83,10 +83,7 @@ function palindrome(str) {
 // SOLUTION:
 
 function reverseInt(n) {
-   
-  
   const reversed = n.toString().split("").reverse().join("");
-
 
   return parseInt(reversed) * Math.sign(n);
 }
@@ -98,34 +95,34 @@ function reverseInt(n) {
 
 // PROBLEM: MAX CHAR. Ex: maxChar("abccccccccd") === "c". Return the character used most inside the string
 
-// SOLUTION 1: 
+// SOLUTION 1:
 
 function maxChar(str) {
-    const charMap = {};
-    let max = 0;
-    let maxChar = ''; 
+  const charMap = {};
+  let max = 0;
+  let maxChar = "";
 
-    for (let char of str) {
-        if (charMap[char]){
-            charMap[char]++;
-        } else {
-            charMap[char] = 1;
-        }
+  for (let char of str) {
+    if (charMap[char]) {
+      charMap[char]++;
+    } else {
+      charMap[char] = 1;
     }
-     console.log(charMap);
+  }
+  console.log(charMap);
 
-     for (let char in  charMap){
-         if (charMap[char] > max){
-             max = charMap[char];
-             maxChar = char;
-         }
-     }
- return maxChar;
+  for (let char in charMap) {
+    if (charMap[char] > max) {
+      max = charMap[char];
+      maxChar = char;
+    }
+  }
+  return maxChar;
 }
 
 // EXPLANATION: Convert string into an object
 
-// other variations: 
+// other variations:
 // 1. What is the most common character in a string?
 // 2. Does string A hae the same cahracters as String B (anagram)?
 // 3. Does the given string have any repeated characters?
@@ -134,25 +131,23 @@ function maxChar(str) {
 
 // PROBLEM: Fizz Buzz. Ex: fizzBuzz(5); 1 2 fizz 4 buzz. Print out fizz for multiples of 3, buzz for multiples of 5, fizzbuzz for multiples of both
 
-
 // SOLUTION:
 
 function fizzBuzz(n) {
- for (let i = 1; i <= n; i++) {
-     // Is the number a multiple of 3 and 5? Can also be a multiple of 15 
-     if (i%3 === 0 && i%5 === 0 ){
-         console.log("fizzbuzz");
-    
-     } else if (i%3 === 0) {
-        // Is the number a multiple of 3?
-        console.log("fizz");
-     } else if (i%5 === 0){
-        //  Is the number a multiple of 5?
-         console.log("buzz")
-     } else {
-         console.log(i);
-     }
- }
+  for (let i = 1; i <= n; i++) {
+    // Is the number a multiple of 3 and 5? Can also be a multiple of 15
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("fizzbuzz");
+    } else if (i % 3 === 0) {
+      // Is the number a multiple of 3?
+      console.log("fizz");
+    } else if (i % 5 === 0) {
+      //  Is the number a multiple of 5?
+      console.log("buzz");
+    } else {
+      console.log(i);
+    }
+  }
 }
 
 // modulo operator: determine a reminder 9%3 = 0
@@ -167,24 +162,22 @@ function fizzBuzz(n) {
 // SOLUTION:
 
 function chunk(array, size) {
-const chunked = [];
+  const chunked = [];
 
-for (let element of array) {
-    const last = chunked[chunked.length -1];
+  for (let element of array) {
+    const last = chunked[chunked.length - 1];
 
     if (!last || last.length === size) {
-        chunked.push([element]);
-
+      chunked.push([element]);
     } else {
-        last.push(element);
+      last.push(element);
     }
 
-    return chunked; 
+    return chunked;
+  }
 }
 
-}
-
-// EXPLANATION: 
+// EXPLANATION:
 
 // Create an array to hold chunks called "chunked"
 // For each element in the "unchunked" array
@@ -194,139 +187,155 @@ for (let element of array) {
 
 // SOLUTION # 2
 
-function chunk(array, size){
+function chunk(array, size) {
+  const chunked = [];
+  let index = 0;
 
-    const chunked = [];
-    let index = 0; 
+  while (index < array.length) {
+    chunked.push(array.slice(index, index + size));
+    index += size;
+  }
 
-    while (index < array.length) {
-        chunked.push(array.slice(index, index + size))
-        index += size;
-    }
-
-    return chunked;
-
-
+  return chunked;
 }
 
-// EXPLANATION: 
+// EXPLANATION:
 
 // .slice(0, 3) -- starting at element 0, give me a copy of everything from 0 up to 3 but not including 3
 // create an empty chunked array
 // create index and start at 0
 // while index is less than the array.length
-    // push a slice of length 'size' from array into 'chunked'
-    // add 'size' to index
+// push a slice of length 'size' from array into 'chunked'
+// add 'size' to index
 
-
-// ======================================================================= 
+// =======================================================================
 
 // PROBLEM: ANAGRAMS Ex: anagrams('rail safety', 'fairy tales') = TRUE
 
-
 // SOLUTION 1:
-function anagrams(stringA, stringB){
-    const aCharMap = buildCharMap(stringA);
-    const bCharMap = buildCharMap(stringB);
+function anagrams(stringA, stringB) {
+  const aCharMap = buildCharMap(stringA);
+  const bCharMap = buildCharMap(stringB);
 
-    if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length){
-        return false;
-    } 
+  if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length) {
+    return false;
+  }
 
-    for (let char in aCharMap) {
-        if (aCharMap[char] !== bCharMap[char]) {
-            return false;
-        } 
+  for (let char in aCharMap) {
+    if (aCharMap[char] !== bCharMap[char]) {
+      return false;
     }
-    return true; 
+  }
+  return true;
 }
 
-function buildCharMap(str){
-    const charMap = {};
+function buildCharMap(str) {
+  const charMap = {};
 
-    for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
-        charMap[char] = charMap[char] + 1 || 1;
-    }
+  for (let char of str.replace(/[^\w]/g, "").toLowerCase()) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
 
-    return charMap;
+  return charMap;
 }
 
 // RegExp -- used to manipulate strings. Can removed spaces and exclamation points
 // word.replace(/[^w]/g, "")
-// toLowerCase(); 
+// toLowerCase();
 // make helper function
 // Object.keys(obj) == gives you an array of keys
 // Object.key(obj).length == gives you the length of the array of the keys
 // Involves three iterations
 
-// SOLUTION 2 
+// SOLUTION 2
 
 function anagrams(stringA, stringB) {
-    return cleanString(stringA) === cleanString(stringB);
-
-
-
+  return cleanString(stringA) === cleanString(stringB);
 }
 
 function cleanString(str) {
-    return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+  return str.replace(/[^\w]/g, "").toLowerCase().split("").sort().join("");
 }
-
 
 // array method: sort() --- figures out how to meaningful sort what is inside an array
 // will sort into alphabetical order
 
 // =================================================================
 
-// PROBLEM: Sentence Capitalize 
+// PROBLEM: Sentence Capitalize
 // Ex: capitalize('a short sentence') ---> 'A Short Sentence'
 // Function that should capitalize the first letter of each word in the string
 
-
-// SOLUTION 1: 
+// SOLUTION 1:
 
 function capitalize(str) {
-const words = [];
+  const words = [];
 
-for (let word of str.split(' ')) {
-    words.push(word[0].toUpperCase() + word.slice(1))
-}
-return words.join(' ');
+  for (let word of str.split(" ")) {
+    words.push(word[0].toUpperCase() + word.slice(1));
+  }
+  return words.join(" ");
 }
 
-// string methods: 
+// string methods:
 // slice() takes a portion of the string & toUpperCase()
 
 // make an empty array 'words
 // split the input string by spaces to get an array
 // for each word in the array
-    // uppercase the first letter of the word
-    // join the first letter with rest of the string
-    // push the result into "words" array
+// uppercase the first letter of the word
+// join the first letter with rest of the string
+// push the result into "words" array
 // join 'words' into a string and return it
 
 // SOLUTION 2
 
 function capitalize(str) {
+  let result = str[0].toUpperCase();
 
-let result = str[0].toUpperCase();
-
-for (let i = 1; i < str.length; i++){
-    if (str[i-1] === ' '){
-       result += str[i].toUpperCase();
+  for (let i = 1; i < str.length; i++) {
+    if (str[i - 1] === " ") {
+      result += str[i].toUpperCase();
     } else {
-        result += str[i];
+      result += str[i];
     }
+  }
+
+  return result;
 }
 
-return result; 
-
-}
-
-// create result which the first character of the input string is capitalized 
+// create result which the first character of the input string is capitalized
 // for each character in the string
-    // if the character to the left is a space
-    // capitalize it and add it to the result
-    // else add it to the result 
+// if the character to the left is a space
+// capitalize it and add it to the result
+// else add it to the result
 
+// PROBLEM: The Steps Question
 
+// Ex: steps(3)
+// '#  '
+// '## '
+// '###'
+
+// SOLUTION 1:
+
+function steps(n) {
+  for (let i = 0; i < n; i++) {
+    const step = "";
+    for (let j = 0; j < n; j++) {
+      if (j <= i) {
+        step += "#";
+      } else {
+        step += " ";
+      }
+    }
+
+    console.log(step);
+  }
+}
+// iterate through rows
+// create an empty string called "stair"
+// iterate through columns
+// if the current column is equal to or less than the current row, add a # to the stair
+// else add a space to the stair
+// console log stair
